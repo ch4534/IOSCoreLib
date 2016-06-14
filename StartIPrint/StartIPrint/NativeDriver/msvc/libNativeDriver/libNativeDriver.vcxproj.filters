@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\..\libNativeDriver\Driver.cpp" />
+    <ClCompile Include="..\..\libNativeDriver\EPOSADriver.cpp" />
+    <ClCompile Include="..\..\libNativeDriver\EPOSTPDriver.cpp" />
+    <ClCompile Include="..\..\libNativeDriver\LQDriver.cpp" />
+    <ClCompile Include="..\..\libNativeDriver\MPDriver.cpp" />
+    <ClCompile Include="..\..\libNativeDriver\OKIDriver.cpp" />
+    <ClCompile Include="..\..\libNativeDriver\OLIDriver.cpp" />
+    <ClCompile Include="Export.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\libNativeDriver\Driver.h" />
+    <ClInclude Include="..\..\libNativeDriver\EPOSADriver.h" />
+    <ClInclude Include="..\..\libNativeDriver\EPOSTPDriver.h" />
+    <ClInclude Include="..\..\libNativeDriver\LQDriver.h" />
+    <ClInclude Include="..\..\libNativeDriver\MPDriver.h" />
+    <ClInclude Include="..\..\libNativeDriver\OKIDriver.h" />
+    <ClInclude Include="..\..\libNativeDriver\OLIDriver.h" />
+    <ClInclude Include="..\..\libNativeDriver\stdinc.h" />
+    <ClInclude Include="Export.h" />
+    <ClInclude Include="msvcinc.h" />
+  </ItemGroup>
+</Project>

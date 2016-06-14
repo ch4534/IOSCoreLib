@@ -1,0 +1,15 @@
+#ifndef EXPORT_H
+#define EXPORT_H
+
+// #ifdef __cplusplus
+// extern "C"
+// {
+// #endif
+
+int InnerRemixBmpInOKI(byte* pBmpData, int bytePerLine, int bmpWidth, int bmpHeight, long lx, long ly, byte* pPrintData, int PrintDataLength, int xDPI, int yDPI);
+
+// #ifdef __cplusplus
+// }
+// #endif
+
+#endif

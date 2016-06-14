@@ -1,0 +1,72 @@
+﻿Build started 2016/6/2 11:53:20.
+     1>Project "C:\Project\ndkroid\NativeDriver\msvc\libNativeDriver\libNativeDriver.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         F:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I..\libNativeDriver\ /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _WINDLL /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\libNativeDriver\Driver.cpp ..\..\libNativeDriver\EPOSADriver.cpp ..\..\libNativeDriver\EPOSTPDriver.cpp ..\..\libNativeDriver\LQDriver.cpp ..\..\libNativeDriver\MPDriver.cpp ..\..\libNativeDriver\OKIDriver.cpp ..\..\libNativeDriver\OLIDriver.cpp Export.cpp
+         Export.cpp
+     1>c:\project\ndkroid\nativedriver\libnativedriver\driver.h : warning C4819: The file contains a character that cannot be represented in the current code page (936). Save the file in Unicode format to prevent data loss
+         OLIDriver.cpp
+     1>c:\project\ndkroid\nativedriver\libnativedriver\olidriver.cpp : warning C4819: The file contains a character that cannot be represented in the current code page (936). Save the file in Unicode format to prevent data loss
+     1>c:\project\ndkroid\nativedriver\libnativedriver\driver.h : warning C4819: The file contains a character that cannot be represented in the current code page (936). Save the file in Unicode format to prevent data loss
+     1>c:\project\ndkroid\nativedriver\libnativedriver\olidriver.cpp(40): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>c:\project\ndkroid\nativedriver\libnativedriver\olidriver.cpp(80): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+         OKIDriver.cpp
+     1>c:\project\ndkroid\nativedriver\libnativedriver\okidriver.cpp : warning C4819: The file contains a character that cannot be represented in the current code page (936). Save the file in Unicode format to prevent data loss
+     1>c:\project\ndkroid\nativedriver\libnativedriver\driver.h : warning C4819: The file contains a character that cannot be represented in the current code page (936). Save the file in Unicode format to prevent data loss
+     1>c:\project\ndkroid\nativedriver\libnativedriver\okidriver.cpp(50): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>c:\project\ndkroid\nativedriver\libnativedriver\okidriver.cpp(99): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\project\ndkroid\nativedriver\libnativedriver\okidriver.cpp(134): warning C4244: '=' : conversion from 'long' to 'byte', possible loss of data
+     1>c:\project\ndkroid\nativedriver\libnativedriver\okidriver.cpp(178): warning C4244: '=' : conversion from 'float' to 'long', possible loss of data
+     1>c:\project\ndkroid\nativedriver\libnativedriver\okidriver.cpp(217): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+         MPDriver.cpp
+     1>c:\project\ndkroid\nativedriver\libnativedriver\mpdriver.cpp : warning C4819: The file contains a character that cannot be represented in the current code page (936). Save the file in Unicode format to prevent data loss
+     1>c:\project\ndkroid\nativedriver\libnativedriver\driver.h : warning C4819: The file contains a character that cannot be represented in the current code page (936). Save the file in Unicode format to prevent data loss
+     1>c:\project\ndkroid\nativedriver\libnativedriver\mpdriver.cpp(55): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>c:\project\ndkroid\nativedriver\libnativedriver\mpdriver.cpp(139): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\project\ndkroid\nativedriver\libnativedriver\mpdriver.cpp(247): warning C4244: '=' : conversion from 'float' to 'long', possible loss of data
+     1>c:\project\ndkroid\nativedriver\libnativedriver\mpdriver.cpp(283): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>c:\project\ndkroid\nativedriver\libnativedriver\mpdriver.cpp(305): warning C4244: '=' : conversion from 'float' to 'long', possible loss of data
+     1>c:\project\ndkroid\nativedriver\libnativedriver\mpdriver.cpp(342): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+         LQDriver.cpp
+     1>c:\project\ndkroid\nativedriver\libnativedriver\lqdriver.cpp : warning C4819: The file contains a character that cannot be represented in the current code page (936). Save the file in Unicode format to prevent data loss
+     1>c:\project\ndkroid\nativedriver\libnativedriver\driver.h : warning C4819: The file contains a character that cannot be represented in the current code page (936). Save the file in Unicode format to prevent data loss
+     1>c:\project\ndkroid\nativedriver\libnativedriver\lqdriver.cpp(66): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>c:\project\ndkroid\nativedriver\libnativedriver\lqdriver.cpp(180): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\project\ndkroid\nativedriver\libnativedriver\lqdriver.cpp(212): warning C4244: '=' : conversion from 'long' to 'byte', possible loss of data
+     1>c:\project\ndkroid\nativedriver\libnativedriver\lqdriver.cpp(299): warning C4244: '=' : conversion from 'float' to 'long', possible loss of data
+     1>c:\project\ndkroid\nativedriver\libnativedriver\lqdriver.cpp(361): warning C4244: '=' : conversion from 'float' to 'long', possible loss of data
+     1>c:\project\ndkroid\nativedriver\libnativedriver\lqdriver.cpp(399): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>c:\project\ndkroid\nativedriver\libnativedriver\lqdriver.cpp(429): warning C4244: '=' : conversion from 'float' to 'long', possible loss of data
+     1>c:\project\ndkroid\nativedriver\libnativedriver\lqdriver.cpp(468): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>c:\project\ndkroid\nativedriver\libnativedriver\lqdriver.cpp(476): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+         EPOSTPDriver.cpp
+     1>c:\project\ndkroid\nativedriver\libnativedriver\epostpdriver.cpp : warning C4819: The file contains a character that cannot be represented in the current code page (936). Save the file in Unicode format to prevent data loss
+     1>c:\project\ndkroid\nativedriver\libnativedriver\driver.h : warning C4819: The file contains a character that cannot be represented in the current code page (936). Save the file in Unicode format to prevent data loss
+     1>c:\project\ndkroid\nativedriver\libnativedriver\epostpdriver.cpp(48): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>c:\project\ndkroid\nativedriver\libnativedriver\epostpdriver.cpp(94): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>c:\project\ndkroid\nativedriver\libnativedriver\epostpdriver.cpp(124): warning C4244: '=' : conversion from 'long' to 'byte', possible loss of data
+         EPOSADriver.cpp
+     1>c:\project\ndkroid\nativedriver\libnativedriver\eposadriver.cpp : warning C4819: The file contains a character that cannot be represented in the current code page (936). Save the file in Unicode format to prevent data loss
+     1>c:\project\ndkroid\nativedriver\libnativedriver\driver.h : warning C4819: The file contains a character that cannot be represented in the current code page (936). Save the file in Unicode format to prevent data loss
+     1>c:\project\ndkroid\nativedriver\libnativedriver\eposadriver.cpp(48): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>c:\project\ndkroid\nativedriver\libnativedriver\eposadriver.cpp(94): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>c:\project\ndkroid\nativedriver\libnativedriver\eposadriver.cpp(124): warning C4244: '=' : conversion from 'long' to 'byte', possible loss of data
+         Driver.cpp
+     1>c:\project\ndkroid\nativedriver\libnativedriver\driver.cpp : warning C4819: The file contains a character that cannot be represented in the current code page (936). Save the file in Unicode format to prevent data loss
+     1>c:\project\ndkroid\nativedriver\libnativedriver\driver.h : warning C4819: The file contains a character that cannot be represented in the current code page (936). Save the file in Unicode format to prevent data loss
+         Generating Code...
+       Link:
+         F:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Project\ndkroid\NativeDriver\msvc\Debug\libNativeDriver.dll" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Project\ndkroid\NativeDriver\msvc\Debug\libNativeDriver.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Project\ndkroid\NativeDriver\msvc\Debug\libNativeDriver.lib" /MACHINE:X86 /DLL Debug\Driver.obj
+         Debug\EPOSADriver.obj
+         Debug\EPOSTPDriver.obj
+         Debug\LQDriver.obj
+         Debug\MPDriver.obj
+         Debug\OKIDriver.obj
+         Debug\OLIDriver.obj
+         Debug\Export.obj
+            Creating library C:\Project\ndkroid\NativeDriver\msvc\Debug\libNativeDriver.lib and object C:\Project\ndkroid\NativeDriver\msvc\Debug\libNativeDriver.exp
+         libNativeDriver.vcxproj -> C:\Project\ndkroid\NativeDriver\msvc\Debug\libNativeDriver.dll
+     1>Done Building Project "C:\Project\ndkroid\NativeDriver\msvc\libNativeDriver\libNativeDriver.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:02.93
