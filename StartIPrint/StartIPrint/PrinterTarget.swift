@@ -27,7 +27,7 @@ class PrinterTarget{
     }
     
     class func PrinterBitmap(xPos:Int, yPos:Int, image:UIImage, paperSize:CGSize, dpi:CGPoint, num:UInt, parse:Parse){
-        
+        //
     }
     
 //    var pageSizes;
