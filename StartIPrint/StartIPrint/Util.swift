@@ -17,7 +17,7 @@ class Util{
     // @return 返回CGSize类型的屏幕尺寸
     class func getScreenSize()-> CGSize{
         //获取屏幕的逻辑分辨率
-        let rect = UIScreen.mainScreen().bounds;
+        let rect = UIScreen.main().bounds;
         //获取屏幕的缩放
 //        let scale = UIScreen.mainScreen().scale;
         let scale:CGFloat = 1.0;
@@ -33,30 +33,30 @@ class Util{
     // @param srcImage:UIImage 源图像
     // @param newSize:CGSize 目标尺寸
     // @return 返回缩放完成的图像
-    class func resizeImage(srcImage:UIImage, newSize:CGSize) -> UIImage {
+    class func resizeImage(_ srcImage:UIImage, newSize:CGSize) -> UIImage {
         UIGraphicsBeginImageContext(newSize);
         
-        srcImage.drawInRect(CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height));
+        srcImage.draw(in: CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height));
         
         let newImage = UIGraphicsGetImageFromCurrentImageContext();
         
         UIGraphicsEndImageContext();
         
-        return newImage;
+        return newImage!;
     }
     
-    class func showTipAlert(controller: UIViewController, message: String){
-        let tipController = UIAlertController(title: "提示", message: message, preferredStyle: .Alert);
-        let sureAction = UIAlertAction(title: "确定", style: .Destructive, handler: nil);
+    class func showTipAlert(_ controller: UIViewController, message: String){
+        let tipController = UIAlertController(title: "提示", message: message, preferredStyle: .alert);
+        let sureAction = UIAlertAction(title: "确定", style: .destructive, handler: nil);
         
         tipController.addAction(sureAction);
         
-        controller.presentViewController(tipController, animated: true, completion: nil);
+        controller.present(tipController, animated: true, completion: nil);
     }
     
     class func IsIPad() -> Bool{
-        let deviceType = UIDevice.currentDevice().model;
-        let isFindIPad = deviceType.rangeOfString("iPad");
+        let deviceType = UIDevice.current().model;
+        let isFindIPad = deviceType.range(of: "iPad");
         
         if isFindIPad != nil {
             return true;
@@ -67,10 +67,10 @@ class Util{
     }
     
     class func getWifiName() -> NSString{
-        var currentSSID = ""
+        let currentSSID = ""
         let interfaces = NEHotspotHelper.supportedNetworkInterfaces() as! [NEHotspotNetwork];
         for interface in interfaces{
-            print("SSID = \(interface.SSID), BSSID = \(interface.BSSID)");
+            print("SSID = \(interface.ssid), BSSID = \(interface.bssid)");
         }
         
 //        for interface in NEHotspotHelper.supportedNetworkInterfaces(){

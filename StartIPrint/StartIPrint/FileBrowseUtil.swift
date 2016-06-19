@@ -46,7 +46,7 @@ class FileBrowseUtil{
         FileInfo.typeIcon["docx"] = UIImage.init(named: "docx_win");
         
         //获取Document文件夹目录
-        topUrl = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String;
+        topUrl = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String;
     }
     
     // 获取文件浏览单例
@@ -79,17 +79,17 @@ class FileBrowseUtil{
     }
     
     // 获取指定路径下的所有文件
-    func getFiles(url:String) -> [FileInfo]?{
+    func getFiles(_ url:String) -> [FileInfo]?{
         if InContainsUrl(url) && FileBrowseUtil.isDirectory(url) {
             do{
                 listFiles.removeAll();
-                let fileManager = NSFileManager.defaultManager();
-                let fileNames = try fileManager.contentsOfDirectoryAtPath(url);
+                let fileManager = FileManager.default();
+                let fileNames = try fileManager.contentsOfDirectory(atPath: url);
             
                 for name in fileNames {
                     let path = "\(url)/\(name)";
                     var isFolder:ObjCBool = false;
-                    fileManager.fileExistsAtPath(path, isDirectory: &isFolder);
+                    fileManager.fileExists(atPath: path, isDirectory: &isFolder);
                     
                     let fileInfo = FileInfo();
                     fileInfo.FileUrl = path;
@@ -102,15 +102,15 @@ class FileBrowseUtil{
                 }
                 
                 if topUrl != url {
-                    let lastOfslash = url.rangeOfString("/", options: .BackwardsSearch, range: nil, locale: nil);
-                    let upUrl = url.substringToIndex((lastOfslash?.startIndex)!);
+                    let lastOfslash = url.range(of: "/", options: .backwardsSearch, range: nil, locale: nil);
+                    let upUrl = url.substring(to: (lastOfslash?.lowerBound)!);
                     
                     let fileInfo = FileInfo();
                     fileInfo.FileUrl = upUrl;
                     fileInfo.fileName = "..";
                     fileInfo.isFolder = true;
                     
-                    listFiles.insert(fileInfo, atIndex: 0);
+                    listFiles.insert(fileInfo, at: 0);
                 }
                 
                 return listFiles;
@@ -128,11 +128,11 @@ class FileBrowseUtil{
     // param url:String 传入需要判断的路径
     //
     // return Bool 返回true表示是文件夹，返回false表示不是文件夹
-    class func isDirectory(url:String) -> Bool{
+    class func isDirectory(_ url:String) -> Bool{
         var isFolder:ObjCBool = false;
         do{
-            let fileManager = NSFileManager.defaultManager();
-            fileManager.fileExistsAtPath(url, isDirectory: &isFolder);
+            let fileManager = FileManager.default();
+            fileManager.fileExists(atPath: url, isDirectory: &isFolder);
         }
         
         if isFolder {
@@ -148,7 +148,7 @@ class FileBrowseUtil{
     // param url:String 传入需要判断的路径
     //
     // return Bool 返回true表示是在顶级路径下，返回false表示不是在顶级路径下
-    private func InContainsUrl(url:String) -> Bool{
+    private func InContainsUrl(_ url:String) -> Bool{
         
         var bRet = true;
         
@@ -158,7 +158,7 @@ class FileBrowseUtil{
                 break;
             }
             
-            if url.rangeOfString(topUrl!) == nil{
+            if url.range(of: topUrl!) == nil{
                 bRet = false;
                 break;
             }
@@ -172,7 +172,7 @@ class FileBrowseUtil{
     // param fileInfo FileInfo 传入需要判断的FileInfo
     //
     // return Bool 返回true表示已经是顶级目录了，返回false表示还没到顶级目录
-    func IsTopUrl(fileInfo:FileInfo) -> Bool {
+    func IsTopUrl(_ fileInfo:FileInfo) -> Bool {
         
         var url = "";
         
@@ -181,10 +181,12 @@ class FileBrowseUtil{
         }
         else {
             let tempUrl = fileInfo.FileUrl;
-            let lastOfslash = tempUrl?.rangeOfString("/", options: .BackwardsSearch, range: nil, locale: nil);
+            let lastOfslash = tempUrl?.range(of: "/", options: .backwardsSearch, range: nil, locale: nil);
             
             if lastOfslash != nil {
-                url = (tempUrl?.substringToIndex((lastOfslash?.startIndex.advancedBy(-1))!))!;
+//                url = (tempUrl?.substring(to: String.CharacterView.index(lastOfslash?.lowerBound, offsetBy: -1)));
+//                url = (tempUrl?.substring(to: (lastOfslash?.index(lastOfslash?.startIndex, offsetBy: -1))!))!;
+                url = (tempUrl?.substring(to: (tempUrl?.index((lastOfslash?.lowerBound)!, offsetBy: -1))!))!;
             }
         }
         

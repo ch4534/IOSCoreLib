@@ -9,7 +9,7 @@
 import UIKit
 
 class PrinterTarget{
-    var type = PrinterType.Null;
+    var type = PrinterType.null;
     var pageSize = CGSize(width: 210.0, height: 297.0);
     var resolution = CGPoint(x: 180, y: 180);
     private static var sInstance:PrinterTarget? = nil;
@@ -26,7 +26,7 @@ class PrinterTarget{
         return sInstance;
     }
     
-    class func PrinterBitmap(xPos:Int, yPos:Int, image:UIImage, paperSize:CGSize, dpi:CGPoint, num:UInt, parse:Parse){
+    class func PrinterBitmap(_ xPos:Int, yPos:Int, image:UIImage, paperSize:CGSize, dpi:CGPoint, num:UInt, parse:Parse){
         //
     }
     
@@ -34,5 +34,5 @@ class PrinterTarget{
 }
 
 enum PrinterType {
-    case Null, wifi, bluetooth, tofile;
+    case null, wifi, bluetooth, tofile;
 }

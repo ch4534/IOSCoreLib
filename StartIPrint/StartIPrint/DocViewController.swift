@@ -32,7 +32,7 @@ class DocViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         // Dispose of any resources that can be recreated.
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let parse = parseLayer {
             return parse.countPages();
         }
@@ -40,19 +40,19 @@ class DocViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         return 0;
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1;
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(idpreviewCell, forIndexPath: indexPath) as? DocViewPreviewCell;
-        cell?.previewImage.image = parseLayer?.getPreviewImage(indexPath.row);
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: idpreviewCell, for: indexPath) as? DocViewPreviewCell;
+        cell?.previewImage.image = parseLayer?.getPreviewImage((indexPath as NSIndexPath).row);
         
         return cell!;
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return (parseLayer?.getPreviewImage(indexPath.row)?.size.height)!;
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return (parseLayer?.getPreviewImage((indexPath as NSIndexPath).row)?.size.height)!;
     }
     /*
     // MARK: - Navigation
@@ -63,7 +63,7 @@ class DocViewController: UIViewController, UITableViewDelegate, UITableViewDataS
         // Pass the selected object to the new view controller.
     }
     */
-    @IBAction func startPrint(sender: AnyObject) {
+    @IBAction func startPrint(_ sender: AnyObject) {
         print("Start To Print");
         let countPage = (parseLayer?.countPages())!;
         for i in 0..<countPage{

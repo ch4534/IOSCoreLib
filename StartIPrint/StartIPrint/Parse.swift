@@ -12,7 +12,7 @@ import UIKit
 // 解析类型
 enum ParseType {
     case image
-    case File
+    case file
 }
 
 // 解析类，用来将所支持的文件解析成图片
@@ -42,8 +42,8 @@ class Parse{
         //将原始图像保存早临时缓存文件夹
         let imagedata = UIImageJPEGRepresentation(image, 1.0);
         let paths = NSTemporaryDirectory();
-        let tempFilePath = paths.stringByAppendingString("tempImage");
-        imagedata?.writeToFile(tempFilePath, atomically: true);
+        let tempFilePath = paths + "tempImage";
+        try? imagedata?.write(to: URL(fileURLWithPath: tempFilePath), options: [.dataWritingAtomic]);
         
         //获取屏幕的尺寸，创建临时图像，传入解析层
         let screenSize = Util.getScreenSize();
@@ -85,7 +85,7 @@ class Parse{
     }
     
     //得到预览视图，
-    func getPreviewImage(num:Int) -> UIImage?{
+    func getPreviewImage(_ num:Int) -> UIImage?{
         var preview:UIImage? = nil;
         
         if type != nil && num < countPage{
@@ -93,7 +93,7 @@ class Parse{
             case .image:
                 preview = image?.scaleImage;
                 
-            case .File:
+            case .file:
                 preview = nil;
             }
         }
@@ -118,7 +118,7 @@ class Parse{
                 let originImage = UIImage(contentsOfFile: self.image!.originImagePath);
                 return Util.resizeImage(originImage!, newSize: size)
                 
-            case .File:
+            case .file:
                 break;
             }
         }
@@ -127,15 +127,16 @@ class Parse{
     }
     
     //类方法，判断是否是可接受解析的数据类型
-    class func IsAcceptType(fileName:String) -> Bool{
+    class func IsAcceptType(_ fileName:String) -> Bool{
         return Parse().IsAcceptType(fileName);
     }
     
     //对象方法，判断是否是可接受解析的数据类型
-    func IsAcceptType(fileName:String) -> Bool{
-        let rangeDot = fileName.rangeOfString(".", options: .BackwardsSearch, range: nil, locale: nil);
+    func IsAcceptType(_ fileName:String) -> Bool{
+        let rangeDot = fileName.range(of: ".", options: .backwardsSearch, range: nil, locale: nil);
         if rangeDot != nil {
-            let fileType = fileName.substringFromIndex((rangeDot?.startIndex.advancedBy(1))!).lowercaseString;
+//            let fileType = fileName.substringFromIndex((rangeDot?.index(rangeDot?.startIndex, offsetBy: 1))!).lowercased();
+            let fileType = fileName.substring(from: fileName.index((rangeDot?.lowerBound)!, offsetBy: 1)).lowercased();
             
             for type in acceptFileType {
                 if fileType == type {

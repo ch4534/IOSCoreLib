@@ -40,7 +40,7 @@ class HttpServerViewController: UIViewController {
         httpServer?.setType("_http._tcp.");
         httpServer?.setPort(16918);
         //设置网页资源路径，设置上传文件保存路径，设置链接处理逻辑类
-        let webPath = NSBundle.mainBundle().bundlePath.stringByAppendingString("/website");
+        let webPath = Bundle.main().bundlePath + "/website";
         print("webpath \(webPath)");
         httpServer?.setDocumentRoot(webPath);
         httpServer?.setConnectionClass(AYHTTPConnection);
@@ -48,26 +48,26 @@ class HttpServerViewController: UIViewController {
 //        print("SSID = \(Util.getWifiName())");
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated);
         
         //当视图显示的时候，启动Server，并添加四个相应的监听事件
         self.startServer();
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(uploadWithStart), name: UPLOADSTART, object: nil);
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(uploading),name: UPLOADING, object: nil);
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(uploadWithEnd),name: UPLOADEND, object: nil);
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(uploadWithDisconnect),name: UPLOADISCONNECTED, object: nil);
+        NotificationCenter.default().addObserver(self, selector: #selector(uploadWithStart), name: UPLOADSTART, object: nil);
+        NotificationCenter.default().addObserver(self, selector: #selector(uploading),name: UPLOADING, object: nil);
+        NotificationCenter.default().addObserver(self, selector: #selector(uploadWithEnd),name: UPLOADEND, object: nil);
+        NotificationCenter.default().addObserver(self, selector: #selector(uploadWithDisconnect),name: UPLOADISCONNECTED, object: nil);
     }
     
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated);
         
         //当视图消失的时候，关闭Server，并移除四个监听事件
         httpServer?.stop();
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UPLOADSTART, object: nil);
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UPLOADING, object: nil);
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UPLOADEND, object: nil);
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UPLOADISCONNECTED, object: nil);
+        NotificationCenter.default().removeObserver(self, name: NSNotification.Name(rawValue: UPLOADSTART), object: nil);
+        NotificationCenter.default().removeObserver(self, name: NSNotification.Name(rawValue: UPLOADING), object: nil);
+        NotificationCenter.default().removeObserver(self, name: NSNotification.Name(rawValue: UPLOADEND), object: nil);
+        NotificationCenter.default().removeObserver(self, name: NSNotification.Name(rawValue: UPLOADISCONNECTED), object: nil);
     }
 
     override func didReceiveMemoryWarning() {
@@ -83,7 +83,7 @@ class HttpServerViewController: UIViewController {
             do{
                 //启动服务器，并在界面上显示相应的端口名字以及监听端口
                 try httpServer?.start();
-                httpAddress.text = "http://\(httpServer!.hostName()):\(httpServer!.listeningPort())";
+                httpAddress.text = "http://\((httpServer!.hostName())!):\(httpServer!.listeningPort())";
             }
             catch{
                 NSLog("Error Started HTTP Server");
@@ -96,8 +96,8 @@ class HttpServerViewController: UIViewController {
      
      - parameter notification: 存储相应的监听信息
      */
-    @objc private func uploadWithStart(notification:NSNotification){
-        let fileSize = notification.userInfo!["totalfilessize"]?.longLongValue;
+    @objc private func uploadWithStart(_ notification:Notification){
+        let fileSize = (notification as NSNotification).userInfo!["totalfilessize"]?.int64Value;
 //        var showFileSize = "";
         
         print("Upload Start And FileSize = \(fileSize)");
@@ -108,7 +108,7 @@ class HttpServerViewController: UIViewController {
      
      - parameter notification: 存储相应的监听信息
      */
-    @objc private func uploadWithEnd(notification:NSNotification){
+    @objc private func uploadWithEnd(_ notification:Notification){
         print("Upload End");
     }
     
@@ -117,7 +117,7 @@ class HttpServerViewController: UIViewController {
      
      - parameter notification: 存储相应的监听信息
      */
-    @objc private func uploadWithDisconnect(notification:NSNotification){
+    @objc private func uploadWithDisconnect(_ notification:Notification){
         print("Upload Disconnect");
     }
     
@@ -126,9 +126,9 @@ class HttpServerViewController: UIViewController {
      
      - parameter notification: 存储相应的监听信息
      */
-    @objc private func uploading(notification:NSNotification){
-        let value:Float = (notification.userInfo!["progressvalue"]?.floatValue)!;
-        currentDataLength += UInt64((notification.userInfo!["cureentvaluelength"]?.intValue)!);
+    @objc private func uploading(_ notification:Notification){
+        let value:Float = ((notification as NSNotification).userInfo!["progressvalue"]?.floatValue)!;
+        currentDataLength += UInt64(((notification as NSNotification).userInfo!["cureentvaluelength"]?.int32Value)!);
         print("currentDataLength = \(currentDataLength), ProgressValue = \(value)");
     }
     /*

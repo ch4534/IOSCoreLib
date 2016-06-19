@@ -15,10 +15,13 @@ class FileInfo{
         set(newValue){
             fileUrl = newValue;
             
-            let lastOfslash = newValue?.rangeOfString("/", options: .BackwardsSearch, range: nil, locale: nil);
+            let lastOfslash = newValue?.range(of: "/", options: .backwardsSearch, range: nil, locale: nil);
+            
             
             if lastOfslash != nil{
-                fileName = newValue?.substringFromIndex((lastOfslash?.startIndex)!.advancedBy(1));
+            
+//                fileName = newValue?.substring(from: String.CharacterView.index((lastOfslash?.lowerBound)!, offsetBy: 1));
+                fileName = newValue?[(newValue?.index((lastOfslash?.lowerBound)!, offsetBy: 1))!..<(newValue?.endIndex)!];
             }
             else{
                 fileName = newValue;
@@ -34,10 +37,10 @@ class FileInfo{
         get{
             
             if type == nil{
-                let lastOfDot = fileUrl?.rangeOfString(".", options: .BackwardsSearch);
+                let lastOfDot = fileUrl?.range(of: ".", options: .backwardsSearch);
             
                 if (lastOfDot != nil){
-                    type = fileUrl?.substringFromIndex((lastOfDot?.startIndex)!);
+                    type = fileUrl?.substring(from: (lastOfDot?.lowerBound)!);
                 }
             }
             

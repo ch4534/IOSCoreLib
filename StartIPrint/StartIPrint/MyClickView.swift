@@ -42,7 +42,7 @@ class MyClickView: UIView,UIActionSheetDelegate {
     //
     // @brief 初始化事件，添加点击手势
     func initEvent(){
-        self.userInteractionEnabled = true;
+        self.isUserInteractionEnabled = true;
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(MyClickView.handleTapGesture));
         self.addGestureRecognizer(tapGesture);
     }
@@ -51,7 +51,7 @@ class MyClickView: UIView,UIActionSheetDelegate {
     // @brief 点击手势事件函数
     //
     // @param sender:UIGestureRecognizer 手势变量
-    func handleTapGesture(sender:UIGestureRecognizer){
+    func handleTapGesture(_ sender:UIGestureRecognizer){
         print("handleTapGesture");
     }
 
@@ -60,8 +60,8 @@ class MyClickView: UIView,UIActionSheetDelegate {
     //
     // @param touches: Set<UITouch> 触摸点数
     // @param withEvent event: UIEvent? 触摸事件
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         print("touchesBegan");
-        super.touchesBegan(touches, withEvent: event);
+        super.touchesBegan(touches, with: event);
     }
 }

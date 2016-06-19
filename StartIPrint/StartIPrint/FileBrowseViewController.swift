@@ -30,7 +30,7 @@ class FileBrowseViewController:UITableViewController/*,UINavigationControllerDel
 //        self.navigationController?.navigationBar.delegate = self;
 //        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "返回", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(popAction));
         
-        let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(importFileToPrint));
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(importFileToPrint));
         self.navigationItem.rightBarButtonItem = addButton;
     }
 
@@ -45,7 +45,7 @@ class FileBrowseViewController:UITableViewController/*,UINavigationControllerDel
     // param numberOfRowsInSection section: Int 相应section的索引
     //
     // return Int 返回相应section的items个数
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (listOfFile?.count)!;
     }
     
@@ -54,7 +54,7 @@ class FileBrowseViewController:UITableViewController/*,UINavigationControllerDel
     // param tableView UITableView 控件引用
     //
     // return Int 返回section个数
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1;
     }
     
@@ -64,10 +64,10 @@ class FileBrowseViewController:UITableViewController/*,UINavigationControllerDel
     // param cellForRowAtIndexPath indexPath: NSIndexPath 包含当前是第几个section第几个item
     // 
     // return UITableViewCell 返回cell
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(filebrocellId, forIndexPath: indexPath);
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: filebrocellId, for: indexPath);
         
-        let fileInfo = listOfFile![indexPath.row];
+        let fileInfo = listOfFile![(indexPath as NSIndexPath).row];
         cell.imageView?.image = fileInfo.fileIcon;
         cell.textLabel?.text = fileInfo.fileName;
         
@@ -78,8 +78,8 @@ class FileBrowseViewController:UITableViewController/*,UINavigationControllerDel
     //
     // param tableView UITableView 控件引用
     // param didSelectRowAtIndexPath indexPath: NSIndexPath 包含当前是第几个section第几item
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let fileInfo = listOfFile![indexPath.row];
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let fileInfo = listOfFile![(indexPath as NSIndexPath).row];
         //如果当前是文件夹，那么获取文件夹下的所有文件
         if fileInfo.isFolder {
             listOfFile = FileBrowseUtil.getInstance()?.getFiles(fileInfo.FileUrl!);
@@ -89,7 +89,7 @@ class FileBrowseViewController:UITableViewController/*,UINavigationControllerDel
             //如果当前是文件，判断是否是支持的文件
             if Parse.IsAcceptType(fileInfo.fileName!) {
                 let mainStoryboard = UIStoryboard(name: "Main", bundle: nil);
-                let docPrint = mainStoryboard.instantiateViewControllerWithIdentifier("siDocPrint") as! DocViewController;
+                let docPrint = mainStoryboard.instantiateViewController(withIdentifier: "siDocPrint") as! DocViewController;
                 
                 let image = UIImage(contentsOfFile: fileInfo.FileUrl!);
                 
@@ -121,7 +121,7 @@ class FileBrowseViewController:UITableViewController/*,UINavigationControllerDel
         print("importFileToPrint");
         
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil);
-        let httpServerController = mainStoryboard.instantiateViewControllerWithIdentifier("importController");
+        let httpServerController = mainStoryboard.instantiateViewController(withIdentifier: "importController");
 //        if Util.IsIPad() {
 //            httpServerController.modalPresentationStyle = .Popover;
 //            httpServerController.popoverPresentationController?.sourceView = self.view;

@@ -33,38 +33,38 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
 
     //拍照按钮动作
-    @IBAction func takePhotoAction(sender: AnyObject) {
+    @IBAction func takePhotoAction(_ sender: AnyObject) {
         //判断相机是否可用
-        if UIImagePickerController.isSourceTypeAvailable(.Camera){
+        if UIImagePickerController.isSourceTypeAvailable(.camera){
             let picker = UIImagePickerController();
             picker.delegate = self;
-            picker.sourceType = UIImagePickerControllerSourceType.Camera;
-            picker.cameraDevice = UIImagePickerControllerCameraDevice.Rear;
-            presentViewController(picker, animated: true, completion: nil);
+            picker.sourceType = UIImagePickerControllerSourceType.camera;
+            picker.cameraDevice = UIImagePickerControllerCameraDevice.rear;
+            present(picker, animated: true, completion: nil);
         }
     }
 
     //图库按钮动作
-    @IBAction func selectPhotoAction(sender: AnyObject) {
+    @IBAction func selectPhotoAction(_ sender: AnyObject) {
         //对于ios来说，图库一定存在，那么就不需要进行判断
         let picker = UIImagePickerController();
         picker.delegate = self;
-        picker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary;
-        presentViewController(picker, animated: true, completion: nil);
+        picker.sourceType = UIImagePickerControllerSourceType.photoLibrary;
+        present(picker, animated: true, completion: nil);
     }
     
     //拍照/图库图片获取函数回调
     //picker:图库选取控制器
     //info:包含原图以及修剪图的引用
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         //取消图像选择控制器的显示
-        picker.dismissViewControllerAnimated(true, completion: nil);
+        picker.dismiss(animated: true, completion: nil);
         
         //获取原始图像
         let originalImage:UIImage? = info[UIImagePickerControllerOriginalImage] as? UIImage;
         //从故事版中实例化一个Controller
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil);
-        let docPrint = mainStoryboard.instantiateViewControllerWithIdentifier("siDocPrint") as! DocViewController;
+        let docPrint = mainStoryboard.instantiateViewController(withIdentifier: "siDocPrint") as! DocViewController;
         
         //如果原始图像不为空，那么执行if语句
         if originalImage != nil{
